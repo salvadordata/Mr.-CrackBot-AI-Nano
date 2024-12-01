@@ -1,8 +1,10 @@
-#Mr. CrackBot AI
+![MrCrackBotAI](docs/screenshots/mrcatbar2.webp)
+
+# Mr. CrackBot AI
 
 > **Status**: 🚧 In its infancy – Not yet released!
 
-Welcome to **Mr. CrackBot AI**, a cutting-edge tool designed for automated Wi-Fi penetration testing and password cracking. Currently in its early development stages, Mr. CrackBot AI combines artificial intelligence, GPU power, and modern cybersecurity techniques to push the boundaries of network security testing.
+Welcome to **Mr. CrackBot AI**, a cutting-edge tool designed for automated Wi-Fi penetration testing and password cracking. This README not only describes the current functionality but also tracks the evolution of the project.
 
 ---
 
@@ -39,6 +41,52 @@ Here’s a preview of Mr. CrackBot AI in action:
 
 ---
 
+## 🛤️ Development Timeline
+
+### **Phase 1: Conceptualization**
+- **Initial Idea**: The project began with discussions about creating a firmware for the NVIDIA Jetson Nano to automate Wi-Fi password cracking.
+- **Key Focus**:
+  - Leveraging the GPU for AI-driven password cracking.
+  - Using wordlists like `rockyou2024.txt` and `SecLists` for cracking WPA/WPA2 passwords.
+
+---
+
+### **Phase 2: Core Functionality Development**
+- **AI Wordlist Generation**:
+  - Integrated an AI model to generate customized password guesses based on SSID and BSSID metadata.
+- **Handshake Capture**:
+  - Automated handshake capturing using tools like `airodump-ng` and `aireplay-ng`.
+- **Deauthentication Attacks**:
+  - Added functionality to force client reconnections for handshake collection.
+
+---
+
+### **Phase 3: Hardware Integration**
+- **Jetson Nano**:
+  - Optimized the project for the Jetson Nano, ensuring compatibility with its hardware constraints.
+- **Wi-Fi Adapter Setup**:
+  - Tested and verified monitor mode compatibility with various adapters.
+- **GPU Utilization**:
+  - Integrated `hashcat` for GPU-accelerated cracking.
+
+---
+
+### **Phase 4: Interactive User Interface**
+- **UI Design**:
+  - Added a user-friendly interface for monitoring networks, handshake capture, and cracking progress.
+- **Real-Time Updates**:
+  - Enabled live tracking of handshake capture status and cracking progress in the UI.
+
+---
+
+### **Phase 5: Configuration Initialization**
+- **Error Handling**:
+  - Ensured the project validates required tools (e.g., `airodump-ng`, `aireplay-ng`, `hashcat`) before starting.
+- **Directory Setup**:
+  - Automated the creation of necessary directories (e.g., `data/wordlists`, `data/captures`) during initialization.
+
+---
+
 ## 🧠 How It Works
 1. **Scanning Networks**:
    - The system uses `airodump-ng` to discover nearby Wi-Fi networks and identifies potential targets.
@@ -51,11 +99,6 @@ Here’s a preview of Mr. CrackBot AI in action:
 
 4. **GPU Cracking**:
    - The generated wordlist is run through `hashcat` for GPU-accelerated password cracking.
-
----
-
-## ⚠️ Disclaimer
-This project is for **educational purposes only**. Use responsibly and only on networks you own or have permission to test.
 
 ---
 
@@ -73,6 +116,10 @@ pip install -r requirements.txt
 
 	3.	Flash the ISO to your SD card and boot your Jetson Nano.
 
+⚠️ Disclaimer
+
+This project is for educational purposes only. Use responsibly and only on networks you own or have permission to test.
+
 🤝 Contributing
 
 Contributions are welcome! Here’s how you can help:
@@ -83,8 +130,7 @@ Contributions are welcome! Here’s how you can help:
 
 This project is licensed under the MIT License.
 
+📊 Project Status
 
-![License](https://img.shields.io/github/license/yourusername/mr-crackbot-ai)
+---
 
-
-![Status](https://img.shields.io/badge/status-in%20development-orange)
