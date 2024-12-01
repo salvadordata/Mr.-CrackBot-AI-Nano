@@ -11,7 +11,7 @@ from utils.config import ensure_directories, check_prerequisites, print_configur
 import logging
 
 # Set up logging
-logging.basicConfig(filename="jetson_crack_ai.log", level=logging.INFO)
+logging.basicConfig(filename="mr_crackbot_ai.log", level=logging.INFO)
 
 
 def pre_gui_setup():
@@ -19,7 +19,7 @@ def pre_gui_setup():
     Perform all pre-GUI setup tasks, including printing configuration,
     ensuring directories, and validating prerequisites.
     """
-    print("[*] Initializing Jetson Crack AI...")
+    print("[*] Initializing Mr. CrackBot AI...")
 
     # Print configuration settings
     print_configuration()
@@ -90,4 +90,4 @@ if __name__ == "__main__":
     app.run()
 
     # Post-GUI placeholder (if needed)
-    print("[*] Jetson Crack AI has exited.")
+    print("[*] Mr. CrackBot AI has exited.")
