@@ -24,21 +24,10 @@ To run Mr. CrackBot AI, you’ll need:
 - **Wi-Fi Adapter**:
   - Capable of monitor mode (e.g., ALFA AWUS036ACH).
 - **NVIDIA GPU** (optional):
-  - Enhances cracking speed if using external hardware.
+  - Enhances cracking speed if using external hardware. Its an idea I'm toying with
 - **SD Card**:
   - Minimum 32GB with Mr. CrackBot AI ISO installed.
-
----
-
-## 📸 Screenshots
-Here’s a preview of Mr. CrackBot AI in action:
-
-![Scanning Networks](docs/screenshots/scanning_networks.png)
-*Figure 1: Scanning for nearby Wi-Fi networks.*
-
-![Cracking Progress](docs/screenshots/cracking_progress.png)
-*Figure 2: Real-time password cracking progress.*
-
+    
 ---
 
 ## 🛤️ Development Timeline
