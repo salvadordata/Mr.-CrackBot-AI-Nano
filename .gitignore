@@ -1,1 +1,76 @@
+# Logs
+*.log
+logs/
+*.pid
 
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.env
+
+# Virtual environments
+venv/
+env/
+
+# Dependencies
+*.egg-info/
+.eggs/
+*.whl
+dist/
+build/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Jetson Nano SD card ISO
+*.img
+*.iso
+
+# Data directories (captured handshakes and wordlists)
+data/wordlists/
+data/captures/
+
+# Generated wordlists or custom scripts
+custom_wordlists/
+
+# GPU Cracking output files
+*.potfile
+*.restore
+hashcat.potfile
+hashcat.restore
+
+# Screenshots and visual outputs
+screenshots/
+docs/screenshots/
+
+# Miscellaneous
+*.bak
+*.swp
+*.tmp
+*.temp
+
+# Node.js (if any UI dependencies require it)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Jetson Nano-specific files
+nvbuild.log
+jetson_logs/
+
+# Security or sensitive files
+config.ini
+secrets.env
+credentials.json
