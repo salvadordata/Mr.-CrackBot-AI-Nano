@@ -119,7 +119,7 @@ Contributions are welcome! Here’s how you can help:
 
 This project is licensed under the MIT License.
 
-📊 Project Status
+📊 Project Status... working on integrating a  Waveshare 7inch HDMI LCD (H) 1024×600 touchscreen. opens a can of worms!!!!📡🚧💾🤖☠️👺👾🥷🏻
 
 ---
 
