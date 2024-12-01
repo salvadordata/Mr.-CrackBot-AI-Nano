@@ -123,3 +123,12 @@ This project is licensed under the MIT License.
 
 ---
 
+🔧 Upcoming Hardware Testing & Debugging 🚀
+
+Mr. CrackBot AI is entering its testing phase! 🧪 The spotlight is now on fine-tuning hardware integration and tackling critical debugging tasks. Powered by the NVIDIA Jetson Nano 🖥️, the upcoming tests will verify compatibility with essential hardware, including the ALFA AWUS036ACH Wi-Fi adapter 📡 (monitor mode & packet injection) and optional external NVIDIA GPUs ⚡ for blazing-fast password cracking.
+
+The AI-powered wordlist generation 🤖 and handshake analysis pipelines will also undergo rigorous testing. The handshake capture process, which uses airodump-ng 📋 and aireplay-ng 🎯 for deauthentication attacks, will be debugged to ensure reliable operation across diverse environments. Once captured, handshakes are fed into hashcat 🚀 for GPU-accelerated cracking, optimized with custom AI-generated wordlists 🧠.
+
+On the front end, efforts will focus on streamlining the user interface 🖱️ and providing real-time feedback 📊 for monitoring network analysis and cracking progress. Additional debugging will address directory setups, dependency validation, and error-handling mechanisms to ensure a seamless user experience.
+
+Stay tuned! 🔥 Mr. CrackBot AI is one step closer to becoming a polished, powerful tool for automated penetration testing and password cracking. 💪✨
