@@ -16,8 +16,10 @@ Here’s what Mr. CrackBot AI aims to accomplish:
 - **Interactive User Interface**: Provides real-time updates on cracking progress and network analysis.
 
 ---
+![NVIDIAJetsonNano](docs/screenshots/IMG_2246.jpeg)
 
 ## 🛠️ Hardware Requirements
+
 To run Mr. CrackBot AI, you’ll need:
 - **NVIDIA Jetson Nano (4GB)**:
   - A small yet powerful AI development board.
