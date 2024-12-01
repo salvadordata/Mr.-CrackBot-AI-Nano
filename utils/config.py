@@ -23,7 +23,7 @@ HASHCAT_MODE = 2500  # WPA/WPA2 cracking mode
 HASHCAT_OPTIONS = "--force"  # Default options for Hashcat
 
 # Logging Configuration
-LOG_FILE = "jetson_crack_ai.log"
+LOG_FILE = "mr_crackbot_ai.log"
 LOG_LEVEL = "INFO"
 
 # Ensure required directories exist
@@ -62,7 +62,7 @@ def log_message(message):
 
 def print_configuration():
     """Print the current configuration settings."""
-    print("===== Jetson Crack AI Configuration =====")
+    print("===== Mr. CrackBot AI Configuration =====")
     print(f"Project Name: {PROJECT_NAME}")
     print(f"Version: {VERSION}")
     print(f"Data Directory: {DATA_DIR}")
