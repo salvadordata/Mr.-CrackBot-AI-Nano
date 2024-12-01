@@ -2,7 +2,7 @@ import os
 import shutil
 
 # General Configuration
-PROJECT_NAME = "Jetson Crack AI"
+PROJECT_NAME = "Mr. CrackBot AI"
 VERSION = "1.0"
 
 # Data Directories
