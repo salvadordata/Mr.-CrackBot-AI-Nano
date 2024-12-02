@@ -133,4 +133,74 @@ The AI-powered wordlist generation 🤖 and handshake analysis pipelines will al
 
 On the front end, efforts will focus on streamlining the user interface 🖱️ and providing real-time feedback 📊 for monitoring network analysis and cracking progress. Additional debugging will address directory setups, dependency validation, and error-handling mechanisms to ensure a seamless user experience.
 
-Stay tuned! 🔥 Mr. CrackBot AI is one step closer to becoming a polished, powerful tool for automated penetration testing and password cracking. 💪✨
+Stay tuned! 🔥 Mr. CrackBot AI is one step closer to becoming a polished, powerful tool for automated penetration testing and password cracking. 💪Here’s the updated hardware list with prices included for each item:
+
+Hardware Components 🛠️
+
+	1.	NVIDIA Jetson Nano 4GB Kit
+	•	Model: 945-13450-0000-000
+	•	Price: $135.00
+	•	Description: The brain of the operation, this AI development board provides GPU-accelerated processing for CrackBot AI’s tasks. It runs Python scripts efficiently and handles AI workloads for tasks like password cracking and Wi-Fi network analysis.
+	2.	WaveShare 7-inch HDMI LCD Touchscreen
+	•	Model: 1024x600 USB Capacitive Touch Screen (H)
+	•	Price: $42.00
+	•	Description: This display is the primary interface for CrackBot AI, allowing you to interact with the software via touch. It connects via HDMI for video and USB for touch input.
+	3.	18650 Battery Holder (4 Slots)
+	•	Model: High-Quality 18650 x4 Battery Storage Clip with 15cm Lead
+	•	Price: $2.49
+	•	Description: Provides portable power for your setup. Holds four 18650 batteries and connects to the DC power converter to regulate power output.
+	4.	18650 3.7V Rechargeable Li-ion Batteries 🔋
+	•	Model: 3.7V Li-ion Batteries (x4)
+	•	Price: $10.00 (estimated total for 4 batteries)
+	•	Description: The primary power source for CrackBot AI. These rechargeable batteries provide a steady power supply for extended use.
+	5.	4S 18650 Battery Protection Circuit
+	•	Model: 4PC 3S 4S 5S BMS 25A Li-ion Battery Protection Board
+	•	Price: $11.43
+	•	Description: Ensures safe charging and discharging of the 18650 batteries. Protects against overcharge, over-discharge, and short circuits.
+	6.	XL4015 5A Buck DC-DC Power Converter
+	•	Model: Step Down Converter with Voltage Current Display
+	•	Price: $8.79
+	•	Description: Regulates voltage from the battery pack to supply a stable 5V output for the Jetson Nano and other components.
+	7.	HDMI Cable
+	•	Model: Ultra-Slim High-Speed HDMI 2.0 Cord (1.5ft)
+	•	Price: $8.49
+	•	Description: Connects the Jetson Nano to the WaveShare touchscreen for video output.
+	8.	16.8V 2A AC/DC Charger
+	•	Model: Adapter for 4S 18650 Li-ion Battery Pack
+	•	Price: $7.55
+	•	Description: Charges the 18650 battery pack to ensure uninterrupted operation.
+	9.	TP-Link USB Wi-Fi Adapter
+	•	Model: AC600Mbps Archer T2U Plus
+	•	Price: $12.99
+	•	Description: Provides Wi-Fi connectivity for CrackBot AI, enabling network scanning and interaction.
+
+Total Estimated Cost: ~$238.74
+
+Assembly Instructions ⚙️
+
+	1.	Prepare the Power System 🔋
+	•	Insert 4 x 18650 3.7V Li-ion rechargeable batteries into the battery holder.
+	•	Connect the battery holder’s output to the 4S BMS protection circuit.
+	•	Connect the BMS output to the XL4015 DC-DC converter. Adjust the voltage output to 5V for the Jetson Nano.
+	2.	Set Up the Jetson Nano 🤖
+	•	Install the Jetson Nano on its carrier board.
+	•	Connect the DC-DC converter output to the Nano’s power input.
+	3.	Attach the WaveShare Touchscreen 🖥️
+	•	Connect the HDMI cable from the Jetson Nano to the touchscreen.
+	•	Plug the touchscreen’s USB cable into the Jetson Nano for touch input.
+	4.	Connect the Wi-Fi Adapter 🌐
+	•	Plug the TP-Link USB Wi-Fi adapter into one of the Jetson Nano’s USB ports.
+	5.	Charge the Battery Pack ⚡
+	•	Use the 16.8V AC/DC charger to fully charge the 18650 batteries before initial use.
+	6.	Power Up and Test 🚀
+	•	Switch on the power system and boot the Jetson Nano.
+	•	Confirm the touchscreen, Wi-Fi adapter, and other components are functioning.
+
+Cool Features and Notes 📝
+
+	•	Portable Power: With the 18650 rechargeable batteries, CrackBot AI is ideal for field testing.
+	•	Touchscreen Interface: The WaveShare display allows for direct interaction with CrackBot AI’s tools.
+	•	Wi-Fi Analysis: The TP-Link adapter supports scanning and deauthentication features.
+
+
+
