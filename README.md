@@ -96,6 +96,9 @@ To run Mr. CrackBot AI, you’ll need:
 4. **GPU Cracking**:
    - The generated wordlist is run through `hashcat` for GPU-accelerated password cracking.
 
+
+## 👀 Link to the official ROCKYOU2024.txt file: https://www.kaggle.com/datasets/bwandowando/original-rockyou2024-text-file-11-parts
+
 ---
 
 ## 🛠️ Installation
