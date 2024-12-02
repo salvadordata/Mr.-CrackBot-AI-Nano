@@ -147,7 +147,7 @@ Stay tuned! 🔥 Mr. CrackBot AI is one step closer to becoming a polished, powe
 
 ---
 
-![HardwareComponents](docs/screenshots/docs/screenshots/PSExpress_DCBB5091-C1C4-4405-B4B9-9AB7A9FCF005.mp4)
+![HardwareComponents](docs/screenshots/docs/screenshots/Hardware.jpeg)
 
 
 	1.	NVIDIA Jetson Nano 4GB Kit
