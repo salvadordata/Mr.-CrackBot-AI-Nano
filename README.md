@@ -40,7 +40,7 @@ To run Mr. CrackBot AI, you’ll need:
 ## 🛤️ Development Timeline
 
 ### **Phase 1: Conceptualization**
-- **Initial Idea**: The project began with discussions about creating a firmware for the NVIDIA Jetson Nano to automate Wi-Fi password cracking.
+- **Initial Idea**: The project culminates with research about creating a tool for the NVIDIA Jetson Nano to automate Wi-Fi password cracking. As it began, I blindly created several rough draft firmwares for an ESP device called the Cheap Yellow Display. Nope!!! Lol! Turning my eyes to the web I researched the smallest, most powerful SBC's capable of password list cracking, and found the NVIDIA JETSON NANO!
 - **Key Focus**:
   - Leveraging the GPU for AI-driven password cracking.
   - Using wordlists like `rockyou2024.txt` and `SecLists` for cracking WPA/WPA2 passwords.
