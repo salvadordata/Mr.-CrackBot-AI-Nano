@@ -143,7 +143,12 @@ On the front end, efforts will focus on streamlining the user interface 🖱️ 
 
 Stay tuned! 🔥 Mr. CrackBot AI is one step closer to becoming a polished, powerful tool for automated penetration testing and password cracking. 💪Here’s the updated hardware list with prices included for each item:
 
-Hardware Components 🛠️
+## Hardware Components 🛠️
+
+---
+
+![HardwareComponents](docs/screenshots/Hardware.heic)
+
 
 	1.	NVIDIA Jetson Nano 4GB Kit
 	•	Model: 945-13450-0000-000
