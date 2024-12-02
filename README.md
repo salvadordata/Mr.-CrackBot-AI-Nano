@@ -12,7 +12,7 @@ Welcome to **Mr. CrackBot AI**, a cutting-edge tool designed for automated Wi-Fi
 Here’s what Mr. CrackBot AI aims to accomplish:
 - **AI-Powered Wordlist Generation**: Uses machine learning to generate highly optimized password guesses based on network metadata.
 - **Automated WPA Handshake Capture**: Scans networks and captures WPA/WPA2 handshakes with minimal user input.
-- **GPU-Accelerated Cracking**: Leverages NVIDIA GPUs and tools like `hashcat` for lightning-fast password cracking.
+- **GPU-Accelerated Cracking**: Leverages NVIDIA GPUs and tools like `hashcat` for "lightning-fast"⚡️💤💤💤💾📡👾password cracking.
 - **Interactive User Interface**: Provides real-time updates on cracking progress and network analysis.
 
 ---
@@ -27,6 +27,7 @@ To run Mr. CrackBot AI, you’ll need:
   - Capable of monitor mode (e.g., ALFA AWUS036ACH).
 - **NVIDIA GPU** (optional):
   - Enhances cracking speed if using external hardware. Its an idea I'm toying with
+
 - **SD Card**:
   - Minimum 32GB with Mr. CrackBot AI ISO installed.
     
