@@ -27,15 +27,14 @@ To run Mr. CrackBot AI, you’ll need:
   - Capable of monitor mode (e.g., ALFA AWUS036ACH).
 - **NVIDIA GPU** (optional):
   - Enhances cracking speed if using external hardware. Its an idea I'm toying with
+- **SD Card**:
+  - Minimum 32GB with Mr. CrackBot AI ISO installed.
 
-## 🎬 Here's a techie (Jeff Geerling) running dedicated GPU Graphics cards into a RP5.
+## 🎬 Here's a techie (Jeff Geerling) running dedicated GPU Graphics cards into a Raspberry Pi SBC, so it's possible😉
 
    https://youtu.be/l9dItRUjQ0k?si=c9cU1-5ZtTJfR4si
 
 
-- **SD Card**:
-  - Minimum 32GB with Mr. CrackBot AI ISO installed.
-    
 ---
 
 ## 🛤️ Development Timeline
