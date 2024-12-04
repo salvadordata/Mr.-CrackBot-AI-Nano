@@ -99,29 +99,3 @@
 99          else:
 100             self.log("Please select a network first.")
 
-102     def update_progress(self, value):
-103         """Update the progress bar."""
-104         self.progress_bar.value = value
-
-106     def get_selected_network(self):
-107         """Get the currently selected network from the list."""
-108         if self.network_list.adapter.selection:
-109             # Parse the selected network's SSID and BSSID
-110             selected_text = self.network_list.adapter.selection[0].text
-111             ssid, bssid = selected_text.split("(")
-112             bssid = bssid.strip(")")
-113             return {"ssid": ssid.strip(), "bssid": bssid, "channel": 6}  # Example: Hardcoded channel for simplicity
-114         return None
-
-116     def log(self, message):
-117         """Log a message to the output."""
-118         self.log_output.text += f"{message}\n"
-
-
-120 class CrackBotApp(App):
-121     def build(self):
-122         return CrackBotUI()
-
-
-124 if __name__ == "__main__":
-125     CrackBotApp().run()
