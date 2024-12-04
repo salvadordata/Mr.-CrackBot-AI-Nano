@@ -4,6 +4,7 @@ from network.deauth import deauth_attack
 from cracking.wordlist_manager import WordlistManager
 from cracking.hashcat_wrapper import crack_password
 from ai.feature_extractor import extract_features
+from ai.password_model import generate_password_guesses  # Import AI password generation
 from ui.main_window import MainWindow
 from utils.config import ensure_directories, check_prerequisites, print_configuration
 
@@ -70,11 +71,20 @@ def main_workflow():
         features = extract_features(ssid, bssid)
 
         # Step 5: Generate wordlist with AI
-        wordlist_manager = WordlistManager()
-        wordlist = wordlist_manager.generate_wordlist(features)
+        print("[*] Generating AI-powered wordlist...")
+        metadata = {
+            "ssid": ssid,
+            "bssid": bssid,
+            "parameters": features
+        }
+        wordlist = generate_password_guesses(metadata)
+        wordlist_file = "data/temp_wordlist.txt"
+        with open(wordlist_file, "w") as file:
+            file.write("\n".join(wordlist))
+        print(f"[*] Wordlist saved to {wordlist_file}")
 
         # Step 6: Crack password
-        crack_password(handshake_file, wordlist)
+        crack_password(handshake_file, wordlist_file)
 
 
 if __name__ == "__main__":
