@@ -81,6 +81,16 @@ To run Mr. CrackBot AI, you’ll need:
 - **Directory Setup**:
   - Automated the creation of necessary directories (e.g., `data/wordlists`, `data/captures`) during initialization.
 
+Here’s a more detailed version with three concise paragraphs:
+
+✨ Update: Initial Build Complete!
+
+The first build of Mr. CrackBot AI is now fully functional, integrating Hugging Face GPT-2 for AI-powered wordlist generation. The system processes network metadata such as SSID, location, and known parameters to create highly targeted password guesses. This initial AI-driven approach ensures that guesses are optimized based on the specific characteristics of the target network.
+
+Users can further customize the cracking process by inputting additional parameters, such as aliases, known passwords, or other personal information related to the target. This data is seamlessly incorporated into the AI model’s wordlist generation, allowing for highly specific and adaptive password predictions. The combination of user input and AI intelligence provides a flexible and user-driven approach to password cracking.
+
+The guesses generated from AI are then merged with pattern-based techniques, like default router configurations, to create a comprehensive wordlist. Logging and error tracking ensure all processes are transparent and easy to refine, making Mr. CrackBot AI a powerful tool that balances automation, user input, and traditional cracking methods.
+
 ---
 
 ## 🧠 How It Works
