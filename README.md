@@ -9,7 +9,7 @@ Welcome to **Mr. CrackBot AI**, a cutting-edge tool designed for automated Wi-Fi
 ---
 
 ## 🚀 Features🥷🏻🤖🔥🔥🔥📡👾👾👾👾👾👾👾👾👾
-Here’s what Mr. CrackBot AI aims to accomplish:
+Here’s what Mr. CrackBot AI aims to accomplish, combining all of these features into one automatic process:
 - **AI-Powered Wordlist Generation**: Uses machine learning to generate highly optimized password guesses based on network metadata.
 - **Automated WPA Handshake Capture**: Scans networks and captures WPA/WPA2 handshakes with minimal user input. Working on attempting WPA3...
 - **GPU-Accelerated Cracking**: Leverages NVIDIA GPUs and tools like `hashcat` for "lightning-fast"⚡️💤💤💤💾📡👾password cracking.
