@@ -27,7 +27,8 @@ To run Mr. CrackBot AI, you’ll need:
   - Capable of monitor mode (e.g., ALFA AWUS036ACH).
 - **SD Card**:
   - Minimum 32GB with Mr. CrackBot AI ISO installed.
-  - (full list below)
+
+(full list below)
 
 ---
 
