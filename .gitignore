@@ -74,3 +74,7 @@ jetson_logs/
 config.ini
 secrets.env
 credentials.json
+
+# Wordlist
+data/rockyou2024.txt
+
