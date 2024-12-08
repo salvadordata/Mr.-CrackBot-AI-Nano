@@ -1,4 +1,4 @@
-![MrCrackBotAI](docs/screenshots/mrcatbar2.webp)
+I![MrCrackBotAI](docs/screenshots/mrcatbar2.webp)
 
 Mr. CrackBot AI
 
@@ -113,7 +113,7 @@ bash split_wordlist.sh
 To set up Mr. CrackBot AI:
 	1.	Clone the repository:
 
-git clone https://github.com/salvadordata/mr-crackbot-ai.git
+git clone https://github.com/salvadordata/mr.-crackbot-ai-nano.git
 cd mr-crackbot-ai
 
 
