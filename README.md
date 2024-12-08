@@ -2,7 +2,7 @@
 
 Mr. CrackBot AI
 
-	Status: 🚧 In its infancy – Not yet released!
+	Status: 🚧 In its infancy – Not yet released! Check back soon!
 
 Welcome to Mr. CrackBot AI, a cutting-edge tool designed for automated Wi-Fi penetration testing and password cracking. This README describes the current functionality and also tracks the evolution of the project.
 
