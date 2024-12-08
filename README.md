@@ -111,13 +111,10 @@ bash split_wordlist.sh
 🛠️ Installation
 
 To set up Mr. CrackBot AI:
+
 	1.	Clone the repository:
 
-git clone https://github.com/salvadordata/mr.-crackbot-ai-nano.git
-cd mr-crackbot-ai
-
-
-	2.	Install dependencies:
+ 2.	Install dependencies:
 
 pip install -r requirements.txt
 
