@@ -1,150 +1,21 @@
 ![MrCrackBotAI](docs/screenshots/mrcatbar2.webp)
 
-# Mr. CrackBot AI
+Mr. CrackBot AI
 
-> **Status**: 🚧 In its infancy – Not yet released!
+	Status: 🚧 In its infancy – Not yet released!
 
-Welcome to **Mr. CrackBot AI**, a cutting-edge tool designed for automated Wi-Fi penetration testing and password cracking. This README  describes the current functionality and also tracks the evolution of the project.
+Welcome to Mr. CrackBot AI, a cutting-edge tool designed for automated Wi-Fi penetration testing and password cracking. This README describes the current functionality and also tracks the evolution of the project.
 
----
+🚀 Features🥷🏻🤖🔥🔥🔥📡👾👾👾👾👾👾👾👾👾
 
-## 🚀 Features🥷🏻🤖🔥🔥🔥📡👾👾👾👾👾👾👾👾👾
 Here’s what Mr. CrackBot AI aims to accomplish, combining all of these features into one automatic process:
-- **AI-Powered Wordlist Generation**: Uses machine learning to generate highly optimized password guesses based on network metadata.
-- **Automated WPA Handshake Capture**: Scans networks and captures WPA/WPA2 handshakes with minimal user input. Working on attempting WPA3...
-- **GPU-Accelerated Cracking**: Leverages NVIDIA GPUs and tools like `hashcat` for "lightning-fast"⚡️💤💤💤💾📡👾password cracking.
-- **Interactive User Interface**: Provides real-time updates on cracking progress and network analysis.
+	•	AI-Powered Wordlist Generation: Uses machine learning to generate highly optimized password guesses based on network metadata.
+	•	Automated WPA Handshake Capture: Scans networks and captures WPA/WPA2 handshakes with minimal user input. Working on attempting WPA3…
+	•	GPU-Accelerated Cracking: Leverages NVIDIA GPUs and tools like hashcat for “lightning-fast”⚡️💤💤💤💾📡👾password cracking.
+	•	Interactive User Interface: Provides real-time updates on cracking progress and network analysis.
 
----
 ![NVIDIAJetsonNano](docs/screenshots/IMG_2246.jpeg)
 
-## 🛠️ Hardware Requirements
-
-To run Mr. CrackBot AI, you’ll need:
-- **NVIDIA Jetson Nano (4GB)**:
-  - A small yet powerful AI development board.
-- **Wi-Fi Adapter**:
-  - Capable of monitor mode (e.g., ALFA AWUS036ACH).
-- **SD Card**:
-  - Minimum 32GB with Mr. CrackBot AI ISO installed.
-
-(full list below)
-
----
-
-## 🛤️ Development Timeline
-
-### **Phase 1: Conceptualization**
-- **Initial Idea** As it began, I blindly created several rough draft firmwares for an ESP32 device called the Cheap Yellow Display with the simple aim of running a much shorter wordlist in an auto function mode against any listed ap selected. Nope!!!🥲🤬🤮Lol! Turning my eyes to the web I researched the smallest, most powerful SBC's capable of password list cracking, and found the NVIDIA JETSON NANO!
-- **Key Focus**:
-  - Leveraging the GPU for AI-driven password cracking.
-  - Using wordlists like `rockyou2024.txt` and `SecLists` for cracking WPA/WPA2 passwords.
-
----
-
-### **Phase 2: Core Functionality Development**
-- **AI Wordlist Generation**:
-  - Integrated an AI model to generate customized password guesses based on SSID and BSSID metadata.
-- **Handshake Capture**:
-  - Automated handshake capturing using tools like `airodump-ng` and `aireplay-ng`.
-- **Deauthentication Attacks**:
-  - Added functionality to force client reconnections for handshake collection.
-
----
-
-### **Phase 3: Hardware Integration**
-- **Jetson Nano**:
-  - Optimized the project for the Jetson Nano, ensuring compatibility with its hardware constraints.
-- **Wi-Fi Adapter Setup**:
-  - Tested and verified monitor mode compatibility with various adapters.
-- **GPU Utilization**:
-  - Integrated `hashcat` for GPU-accelerated cracking.
-
----
-
-### **Phase 4: Interactive User Interface**
-- **UI Design**:
-  - Added a user-friendly interface for monitoring networks, handshake capture, and cracking progress.
-- **Real-Time Updates**:
-  - Enabled live tracking of handshake capture status and cracking progress in the UI.
-
----
-
-### **Phase 5: Configuration Initialization**
-- **Error Handling**:
-  - Ensured the project validates required tools (e.g., `airodump-ng`, `aireplay-ng`, `hashcat`) before starting.
-- **Directory Setup**:
-  - Automated the creation of necessary directories (e.g., `data/wordlists`, `data/captures`) during initialization.
-
-### ✨ Update: Initial Build Complete!
-
-The first build of Mr. CrackBot AI' actual AI is now fully functional, integrating Hugging Face GPT-2 for ease of implementation for AI-powered wordlist generation. The system processes network metadata such as SSID, location, and known parameters to create highly targeted password guesses. This initial AI-driven approach ensures that guesses are optimized based on the specific characteristics of the target network.
-
-Users can further customize the cracking process by inputting additional parameters, such as aliases, known passwords, or other personal information related to the target. This data is seamlessly incorporated into the AI model’s wordlist generation, allowing for highly specific and adaptive password predictions. The combination of user input and AI intelligence provides a flexible and user-driven approach to password cracking.
-
-The guesses generated from AI are then merged with pattern-based techniques, like default router configurations, to create a comprehensive wordlist. Logging and error tracking ensure all processes are transparent and easy to refine, making Mr. CrackBot AI a powerful tool that balances automation, user input, and traditional cracking methods.
-
----
-
-## 🧠 How It Works
-1. **Scanning Networks**:
-   - The system uses `airodump-ng` to discover nearby Wi-Fi networks and identifies potential targets.
-
-2. **Capturing Handshakes**:
-   - Handshakes are captured using deauthentication attacks (`aireplay-ng`) and stored for analysis.
-
-3. **AI-Powered Wordlists**:
-   - Based on network metadata (SSID, BSSID), the AI generates custom wordlists optimized for cracking.
-
-4. **GPU Cracking**:
-   - The generated wordlist is run through `hashcat` for GPU-accelerated password cracking.
-
-
-## 👀 Link to the official ROCKYOU2024.txt file: https://www.kaggle.com/datasets/bwandowando/original-rockyou2024-text-file-11-parts
-
----
-
-## 🛠️ Installation
-To set up Mr. CrackBot AI:
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/mr-crackbot-ai.git
-   cd mr-crackbot-ai
-
-	2.	Install dependencies:
-
-pip install -r requirements.txt
-
-
-	3.	Flash the ISO to your SD card and boot your Jetson Nano.
-
-⚠️ Disclaimer
-
-This project is for educational purposes only. Use responsibly and only on networks you own or have permission to test.
-
-🤝 Contributing
-
-Contributions are welcome! Here’s how you can help:
-	•	Open issues for bugs or feature requests.
-	•	Submit pull requests for new features.
-
-📜 License
-
-This project is licensed under the MIT License.
-
-📊 Project Status... working on integrating a  Waveshare 7inch HDMI LCD (H) 1024×600 touchscreen. Opens a can of worms!!!!📡🚧💾🤖☠️👺👾🥷🏻
-
----
-
-🔧 Upcoming Hardware Testing & Debugging 🚀
-
-Mr. CrackBot AI is entering its testing phase! 🧪 The spotlight is now on fine-tuning hardware integration and tackling critical debugging tasks. Powered by the NVIDIA Jetson Nano 🖥️, the upcoming tests will verify compatibility with essential hardware, including the ALFA AWUS036ACH Wi-Fi adapter 📡 (monitor mode & packet injection) and optional external NVIDIA GPUs ⚡ for blazing-fast password cracking.
-
-The AI-powered wordlist generation 🤖 and handshake analysis pipelines will also undergo rigorous testing. The handshake capture process, which uses airodump-ng 📋 and aireplay-ng 🎯 for deauthentication attacks, will be debugged to ensure reliable operation across diverse environments. Once captured, handshakes are fed into hashcat 🚀 for GPU-accelerated cracking, optimized with custom AI-generated wordlists 🧠.
-
-On the front end, efforts will focus on streamlining the user interface 🖱️ and providing real-time feedback 📊 for monitoring network analysis and cracking progress. Additional debugging will address directory setups, dependency validation, and error-handling mechanisms to ensure a seamless user experience.
-
-Stay tuned! 🔥 Mr. CrackBot AI is one step closer to becoming a polished, powerful tool for automated penetration testing and password cracking. 💪Here’s the updated hardware list with prices included for each item:
 
 ## Hardware Components 🛠️
 
@@ -192,31 +63,110 @@ Stay tuned! 🔥 Mr. CrackBot AI is one step closer to becoming a polished, powe
 
 Total Estimated Cost: ~$238.74
 
-Assembly Instructions ⚙️
+🛤️ Development Timeline
 
-	1.	Prepare the Power System 🔋
-	•	Insert 4 x 18650 3.7V Li-ion rechargeable batteries into the battery holder.
-	•	Connect the battery holder’s output to the 4S BMS protection circuit.
-	•	Connect the BMS output to the XL4015 DC-DC converter. Adjust the voltage output to 5V for the Jetson Nano.
-	2.	Set Up the Jetson Nano 🤖
-	•	Install the Jetson Nano on its carrier board.
-	•	Connect the DC-DC converter output to the Nano’s power input.
-	3.	Attach the WaveShare Touchscreen 🖥️
-	•	Connect the HDMI cable from the Jetson Nano to the touchscreen.
-	•	Plug the touchscreen’s USB cable into the Jetson Nano for touch input.
-	4.	Connect the Wi-Fi Adapter 🌐
-	•	Plug the TP-Link USB Wi-Fi adapter into one of the Jetson Nano’s USB ports.
-	5.	Charge the Battery Pack ⚡
-	•	Use the 16.8V AC/DC charger to fully charge the 18650 batteries before initial use.
-	6.	Power Up and Test 🚀
-	•	Switch on the power system and boot the Jetson Nano.
-	•	Confirm the touchscreen, Wi-Fi adapter, and other components are functioning.
+Phase 1: Conceptualization
+	•	Initial Idea: I began by creating several rough draft firmwares for an ESP32 device called the Cheap Yellow Display. The goal was running shorter wordlists in auto mode, but I pivoted to researching the smallest, most powerful SBCs capable of password cracking—and found the NVIDIA Jetson Nano!
+	•	Key Focus:
+	•	Leveraging the GPU for AI-driven password cracking.
+	•	Using wordlists like rockyou2024.txt and SecLists for cracking WPA/WPA2 passwords.
 
-Cool Features and Notes 📝
+Phase 2: Core Functionality Development
+	•	AI Wordlist Generation:
+	•	Integrated an AI model to generate customized password guesses based on SSID and BSSID metadata.
+	•	Handshake Capture:
+	•	Automated handshake capturing using tools like airodump-ng and aireplay-ng.
+	•	Deauthentication Attacks:
+	•	Added functionality to force client reconnections for handshake collection.
 
-	•	Portable Power: With the 18650 rechargeable batteries, CrackBot AI is ideal for field testing.
-	•	Touchscreen Interface: The WaveShare display allows for direct interaction with CrackBot AI’s tools.
-	•	Wi-Fi Analysis: The TP-Link adapter supports scanning and deauthentication features.
+Phase 3: Hardware Integration
+	•	Jetson Nano:
+	•	Optimized the project for the Jetson Nano, ensuring compatibility with its hardware constraints.
+	•	Wi-Fi Adapter Setup:
+	•	Tested and verified monitor mode compatibility with various adapters.
+	•	GPU Utilization:
+	•	Integrated hashcat for GPU-accelerated cracking.
+
+Phase 4: Interactive User Interface
+	•	UI Design:
+	•	Added a user-friendly interface for monitoring networks, handshake capture, and cracking progress.
+	•	Real-Time Updates:
+	•	Enabled live tracking of handshake capture status and cracking progress in the UI.
+
+Phase 5: Configuration Initialization
+	•	Error Handling:
+	•	Ensured the project validates required tools (e.g., airodump-ng, aireplay-ng, hashcat) before starting.
+	•	Directory Setup:
+	•	Automated the creation of necessary directories (e.g., data/wordlists, data/captures) during initialization.
+
+✨ Update: Docker Image and AI Integration
+
+The latest development includes:
+	•	Dockerized Environment: A fully-functional Docker image for streamlined deployment and testing.
+	•	AI-Driven Password Cracking: Hugging Face GPT-2 integration for generating adaptive, metadata-based wordlists.
+
+The system can now process network metadata such as SSID, location, and known parameters to create highly targeted password guesses. These AI-driven wordlists are further optimized using pattern-based techniques and logged for transparency and debugging.
+
+🧠 How It Works
+	1.	Scanning Networks:
+	•	The system uses airodump-ng to discover nearby Wi-Fi networks and identifies potential targets.
+	2.	Capturing Handshakes:
+	•	Handshakes are captured using deauthentication attacks (aireplay-ng) and stored for analysis.
+	3.	AI-Powered Wordlists:
+	•	Based on network metadata (SSID, BSSID), the AI generates custom wordlists optimized for cracking.
+	4.	GPU Cracking:
+	•	The generated wordlist is run through hashcat for GPU-accelerated password cracking.
+
+📜 Handling the rockyou2024.txt File
+
+Given the large size of rockyou2024.txt, the setup process now includes splitting the file into manageable chunks for better performance:
+	1.	Automatic Splitting During Setup:
+	•	The setup.py script handles splitting automatically:
+
+import os
+import subprocess
+
+rockyou_path = "data/rockyou2024.txt"
+split_output_dir = "data/split_rockyou"
+os.makedirs(split_output_dir, exist_ok=True)
+subprocess.run(["split", "-l", "100000", rockyou_path, f"{split_output_dir}/rockyou_part_"])
+
+
+	2.	Standalone Splitting Script:
+	•	You can run the split_wordlist.sh script manually:
+
+#!/bin/bash
+rockyou_path="data/rockyou2024.txt"
+split_output_dir="data/split_rockyou"
+mkdir -p $split_output_dir
+split -l 100000 $rockyou_path $split_output_dir/rockyou_part_
+
+👀 Link to the official ROCKYOU2024.txt file: https://www.kaggle.com/datasets/bwandowando/original-rockyou2024-text-file-11-parts
+
+🛠️ Installation
+
+To set up Mr. CrackBot AI:
+	1.	Clone the repository:
+
+git clone https://github.com/yourusername/mr-crackbot-ai.git
+cd mr-crackbot-ai
+
+
+	2.	Install dependencies:
+
+pip install -r requirements.txt
+
+
+	3.	Flash the ISO to your SD card and boot your Jetson Nano.
+	4.	Split the rockyou2024.txt file (if not automatically split during setup).
+
+⚠️ Disclaimer:
+This project is for educational purposes only. Use responsibly and only on networks you own or have permission to test.
+
+🤝 Contributing:
+	•	Open issues for bugs or feature requests.
+	•	Submit pull requests for new features.
+
 
 
 
