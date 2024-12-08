@@ -11,18 +11,14 @@ Welcome to Mr. CrackBot AI, a cutting-edge tool designed for automated Wi-Fi pen
 Here’s what Mr. CrackBot AI aims to accomplish, combining all of these features into one automatic process:
 	•	AI-Powered Wordlist Generation: Uses machine learning to generate highly optimized password guesses based on network metadata.
 	•	Automated WPA Handshake Capture: Scans networks and captures WPA/WPA2 handshakes with minimal user input. Working on attempting WPA3…
-	•	GPU-Accelerated Cracking: Leverages NVIDIA GPUs and tools like hashcat for “lightning-fast”⚡️💤💤💤💾📡👾password cracking.
+	•	GPU-Accelerated Cracking: Leverages NVIDIA GPUs and tools like hashcat for “lightning-fast”⚡️💤💤💤💾📡👾 password cracking.
 	•	Interactive User Interface: Provides real-time updates on cracking progress and network analysis.
 
 ![NVIDIAJetsonNano](docs/screenshots/IMG_2246.jpeg)
-
-
-## Hardware Components 🛠️
-
----
-
 ![HardwareComponents](docs/screenshots/Harware2.JPEG)
 
+
+🛠️ Hardware Components
 
 	1.	NVIDIA Jetson Nano 4GB Kit
 	•	Model: 945-13450-0000-000
@@ -72,54 +68,26 @@ Phase 1: Conceptualization
 	•	Using wordlists like rockyou2024.txt and SecLists for cracking WPA/WPA2 passwords.
 
 Phase 2: Core Functionality Development
-	•	AI Wordlist Generation:
-	•	Integrated an AI model to generate customized password guesses based on SSID and BSSID metadata.
-	•	Handshake Capture:
-	•	Automated handshake capturing using tools like airodump-ng and aireplay-ng.
-	•	Deauthentication Attacks:
-	•	Added functionality to force client reconnections for handshake collection.
+	•	AI Wordlist Generation: Integrated an AI model to generate customized password guesses based on SSID and BSSID metadata.
+	•	Handshake Capture: Automated handshake capturing using tools like airodump-ng and aireplay-ng.
+	•	Deauthentication Attacks: Added functionality to force client reconnections for handshake collection.
 
 Phase 3: Hardware Integration
-	•	Jetson Nano:
-	•	Optimized the project for the Jetson Nano, ensuring compatibility with its hardware constraints.
-	•	Wi-Fi Adapter Setup:
-	•	Tested and verified monitor mode compatibility with various adapters.
-	•	GPU Utilization:
-	•	Integrated hashcat for GPU-accelerated cracking.
+	•	Jetson Nano: Optimized the project for the Jetson Nano, ensuring compatibility with its hardware constraints.
+	•	Wi-Fi Adapter Setup: Tested and verified monitor mode compatibility with various adapters.
+	•	GPU Utilization: Integrated hashcat for GPU-accelerated cracking.
 
 Phase 4: Interactive User Interface
-	•	UI Design:
-	•	Added a user-friendly interface for monitoring networks, handshake capture, and cracking progress.
-	•	Real-Time Updates:
-	•	Enabled live tracking of handshake capture status and cracking progress in the UI.
+	•	UI Design: Added a user-friendly interface for monitoring networks, handshake capture, and cracking progress.
+	•	Real-Time Updates: Enabled live tracking of handshake capture status and cracking progress in the UI.
 
 Phase 5: Configuration Initialization
-	•	Error Handling:
-	•	Ensured the project validates required tools (e.g., airodump-ng, aireplay-ng, hashcat) before starting.
-	•	Directory Setup:
-	•	Automated the creation of necessary directories (e.g., data/wordlists, data/captures) during initialization.
-
-✨ Update: Docker Image and AI Integration
-
-The latest development includes:
-	•	Dockerized Environment: A fully-functional Docker image for streamlined deployment and testing.
-	•	AI-Driven Password Cracking: Hugging Face GPT-2 integration for generating adaptive, metadata-based wordlists.
-
-The system can now process network metadata such as SSID, location, and known parameters to create highly targeted password guesses. These AI-driven wordlists are further optimized using pattern-based techniques and logged for transparency and debugging.
-
-🧠 How It Works
-	1.	Scanning Networks:
-	•	The system uses airodump-ng to discover nearby Wi-Fi networks and identifies potential targets.
-	2.	Capturing Handshakes:
-	•	Handshakes are captured using deauthentication attacks (aireplay-ng) and stored for analysis.
-	3.	AI-Powered Wordlists:
-	•	Based on network metadata (SSID, BSSID), the AI generates custom wordlists optimized for cracking.
-	4.	GPU Cracking:
-	•	The generated wordlist is run through hashcat for GPU-accelerated password cracking.
+	•	Error Handling: Ensured the project validates required tools (e.g., airodump-ng, aireplay-ng, hashcat) before starting.
+	•	Directory Setup: Automated the creation of necessary directories (e.g., data/wordlists, data/captures) during initialization.
 
 📜 Handling the rockyou2024.txt File
 
-Given the large size of rockyou2024.txt, the setup process now includes splitting the file into manageable chunks for better performance:
+Given the large size of rockyou2024.txt, the setup process includes splitting the file into manageable chunks for better performance.
 	1.	Automatic Splitting During Setup:
 	•	The setup.py script handles splitting automatically:
 
@@ -135,13 +103,10 @@ subprocess.run(["split", "-l", "100000", rockyou_path, f"{split_output_dir}/rock
 	2.	Standalone Splitting Script:
 	•	You can run the split_wordlist.sh script manually:
 
-#!/bin/bash
-rockyou_path="data/rockyou2024.txt"
-split_output_dir="data/split_rockyou"
-mkdir -p $split_output_dir
-split -l 100000 $rockyou_path $split_output_dir/rockyou_part_
+bash split_wordlist.sh
 
-👀 Link to the official ROCKYOU2024.txt file: https://www.kaggle.com/datasets/bwandowando/original-rockyou2024-text-file-11-parts
+
+	•	The script is included for flexibility and redundancy.
 
 🛠️ Installation
 
@@ -160,13 +125,8 @@ pip install -r requirements.txt
 	3.	Flash the ISO to your SD card and boot your Jetson Nano.
 	4.	Split the rockyou2024.txt file (if not automatically split during setup).
 
-⚠️ Disclaimer:
-This project is for educational purposes only. Use responsibly and only on networks you own or have permission to test.
+⚠️ Disclaimer: This project is for educational purposes only. Use responsibly and only on networks you own or have permission to test.
 
 🤝 Contributing:
 	•	Open issues for bugs or feature requests.
 	•	Submit pull requests for new features.
-
-
-
-
