@@ -113,7 +113,7 @@ bash split_wordlist.sh
 To set up Mr. CrackBot AI:
 	1.	Clone the repository:
 
-git clone https://github.com/yourusername/mr-crackbot-ai.git
+git clone https://github.com/salvadordata/mr-crackbot-ai.git
 cd mr-crackbot-ai
 
 
