@@ -1,7 +1,7 @@
-# Use a stable NVIDIA Jetson base image from JetPack 5.1
-FROM nvcr.io/nvidia/l4t-base:r35.1.0
+# Use a stable CUDA base image
+FROM nvcr.io/nvidia/cuda:11.4.2-base-ubuntu20.04
 
-# Set environment variables to avoid interactive prompts during installation
+# Set environment variables to avoid interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Update system and install required dependencies
@@ -11,14 +11,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the project files into the container
+# Copy project files into the container
 COPY . /app
 
-# Install Python dependencies if a requirements.txt file exists
+# Install Python dependencies if they exist
 RUN pip3 install --no-cache-dir -r requirements.txt || echo "No requirements.txt found"
 
-# Specify the default command to run the application
+# Specify the default command
 CMD ["python3", "main.py"]
