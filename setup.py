@@ -73,6 +73,18 @@ def ensure_dependencies():
     print("[*] Installing MegaCMD for downloading...")
     subprocess.run(["sudo", "apt-get", "install", "-y", "megatools"], check=True)
 
+def install_requirements():
+    """
+    Install Python dependencies from requirements.txt.
+    """
+    requirements_file = "requirements.txt"
+    if os.path.exists(requirements_file):
+        print(f"[*] Installing Python dependencies from {requirements_file}...")
+        subprocess.run(["pip", "install", "-r", requirements_file], check=True)
+        print("[*] Python dependencies installed successfully.")
+    else:
+        print(f"[!] {requirements_file} not found. Skipping Python dependency installation.")
+
 # Setup script
 if __name__ == "__main__":
     print("[*] Creating required directories...")
@@ -80,6 +92,9 @@ if __name__ == "__main__":
 
     print("[*] Ensuring dependencies...")
     ensure_dependencies()
+
+    print("[*] Installing Python requirements...")
+    install_requirements()
 
     print("[*] Downloading, extracting, and combining RockYou2024 wordlists...")
     download_and_extract_wordlists()
