@@ -4,11 +4,12 @@ from network.deauth import deauth_attack
 from cracking.wordlist_manager import WordlistManager
 from cracking.hashcat_wrapper import crack_password
 from ai.feature_extractor import extract_features
-from ai.password_model import generate_password_guesses  # Import AI password generation
+from ai.password_model import generate_password_guesses
 from ui.main_window import MainWindow
 from utils.config import ensure_directories, check_prerequisites, print_configuration
 
-# Additional imports for future expansion
+# Additional imports for wordlist handling and file operations
+import os
 import logging
 
 # Set up logging
@@ -40,6 +41,19 @@ def pre_gui_setup():
         exit(1)
 
     print("[*] Pre-GUI setup complete.")
+
+
+def use_combined_wordlist():
+    """
+    Ensure the combined RockYou2024 wordlist exists and return the path.
+    """
+    combined_wordlist = "data/wordlists/RockYou2024_combined.txt"
+    if not os.path.exists(combined_wordlist):
+        raise FileNotFoundError(
+            "[!] Combined wordlist not found. Run setup.py to generate it."
+        )
+    print(f"[*] Using combined wordlist: {combined_wordlist}")
+    return combined_wordlist
 
 
 def main_workflow():
@@ -83,8 +97,9 @@ def main_workflow():
             file.write("\n".join(wordlist))
         print(f"[*] Wordlist saved to {wordlist_file}")
 
-        # Step 6: Crack password
-        crack_password(handshake_file, wordlist_file)
+        # Step 6: Use combined RockYou wordlist for cracking
+        combined_wordlist = use_combined_wordlist()
+        crack_password(handshake_file, combined_wordlist)
 
 
 if __name__ == "__main__":
@@ -100,4 +115,4 @@ if __name__ == "__main__":
     app.run()
 
     # Post-GUI placeholder (if needed)
-    print("[*] Mr. CrackBot AI has exited.")
+    print("[*] Mr. CrackBot AI has exited."))
