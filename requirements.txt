@@ -1,1 +1,5 @@
-
+pygame
+transformers
+torch
+kivy
+requests
