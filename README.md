@@ -11,8 +11,12 @@ Here’s what Mr. CrackBot AI Nano is designed to accomplish, combining all feat
 	•	Automated WPA Handshake Capture: Scans networks and captures WPA/WPA2 handshakes with minimal user input. (Currently working on support for WPA3!)
 	•	GPU-Accelerated Cracking: Leverages NVIDIA GPUs and tools like hashcat for “lightning-fast”⚡️ password cracking.
 	•	Interactive User Interface: Provides real-time updates on cracking progress and network analysis.
-![NVIDIAJetsonNano](docs/screenshots/IMG_2246.JPEG)
-![HardwareComponents](docs/screenshots/Harware2.JPEG)🛠️ Hardware Components
+
+![NVIDIAJetsonNano](docs/screenshots/IMG_2246.jpeg)
+
+![HardwareComponents](docs/screenshots/Harware2.JPEG)🛠️ 
+
+🛠️ Hardware Components
 
 	1.	NVIDIA Jetson Nano 4GB Kit
 	•	Model: 945-13450-0000-000
