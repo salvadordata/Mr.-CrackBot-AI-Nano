@@ -38,7 +38,8 @@ Thumbs.db
 *.iso
 
 # Data directories (captured handshakes and wordlists)
-data/wordlists/
+data/wordlists/*.7z
+data/wordlists/RockYou2024_combined.txt
 data/captures/
 
 # Generated wordlists or custom scripts
@@ -74,7 +75,3 @@ jetson_logs/
 config.ini
 secrets.env
 credentials.json
-
-# Wordlist
-data/rockyou2024.txt
-
