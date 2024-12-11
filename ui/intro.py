@@ -15,8 +15,8 @@ def run_intro():
     black = (0, 0, 0)
     blue = (0, 0, 255)
 
-    # Load image (ensure image is in the same folder or adjust the path)
-    image = pygame.image.load("intro_image.png")  # Replace with your image file
+    # Load image (ensure image is in the correct folder)
+    image = pygame.image.load("docs/screenshots/mrcatbar2.webp")  # Updated with your file
     image = pygame.transform.scale(image, (screen_width, screen_height))
 
     # Font
