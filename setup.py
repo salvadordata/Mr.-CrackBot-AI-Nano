@@ -1,6 +1,30 @@
 import os
 import subprocess
 
+def create_directories():
+    """
+    Ensure all required directories are created during setup.
+    """
+    directories = [
+        "data/wordlists",
+        "data/captures",
+        "logs",
+        "custom_wordlists",
+        "screenshots",
+        "docs/screenshots",
+        "build",
+        "dist",
+        "env",
+        "venv",
+        "node_modules",
+        "jetson_logs",
+    ]
+    for directory in directories:
+        if not os.path.exists(directory):
+            print(f"[*] Creating directory: {directory}")
+            os.makedirs(directory)
+    print("[*] All required directories have been created.")
+
 def download_and_extract_wordlists():
     """
     Download, extract, and combine RockYou2024 wordlists from external sources.
@@ -51,7 +75,11 @@ def ensure_dependencies():
 
 # Setup script
 if __name__ == "__main__":
+    print("[*] Creating required directories...")
+    create_directories()
+
     print("[*] Ensuring dependencies...")
     ensure_dependencies()
+
     print("[*] Downloading, extracting, and combining RockYou2024 wordlists...")
     download_and_extract_wordlists()
