@@ -8,6 +8,9 @@ from ai.password_model import generate_password_guesses
 from ui.main_window import MainWindow
 from utils.config import ensure_directories, check_prerequisites, print_configuration
 
+# Import for the intro
+from ui.intro import run_intro
+
 # Additional imports for wordlist handling and file operations
 import os
 import logging
@@ -103,6 +106,9 @@ def main_workflow():
 
 
 if __name__ == "__main__":
+    # Display the intro animation
+    run_intro()
+
     # Pre-GUI setup
     pre_gui_setup()
 
@@ -115,4 +121,4 @@ if __name__ == "__main__":
     app.run()
 
     # Post-GUI placeholder (if needed)
-    print("[*] Mr. CrackBot AI has exited."))
+    print("[*] Mr. CrackBot AI has exited.")
