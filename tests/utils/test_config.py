@@ -1,3 +1,4 @@
+import os
 import pytest
 from utils.config import ensure_directories, check_prerequisites
 
