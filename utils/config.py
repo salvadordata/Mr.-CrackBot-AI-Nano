@@ -1,35 +1,36 @@
 import os
 import shutil
 
-# General Configuration
-PROJECT_NAME = "Mr. CrackBot AI"
-VERSION = "1.0"
+class Config:
+    # General Configuration
+    PROJECT_NAME = "Mr. CrackBot AI"
+    VERSION = "1.0"
 
-# Data Directories
-DATA_DIR = "data"
-WORDLISTS_DIR = os.path.join(DATA_DIR, "wordlists")
-CAPTURES_DIR = os.path.join(DATA_DIR, "captures")
+    # Data Directories
+    DATA_DIR = "data"
+    WORDLISTS_DIR = os.path.join(DATA_DIR, "wordlists")
+    CAPTURES_DIR = os.path.join(DATA_DIR, "captures")
 
-# Default Wordlist Files
-DEFAULT_WORDLIST = os.path.join(WORDLISTS_DIR, "rockyou2024.txt")
-GENERATED_WORDLIST = os.path.join(WORDLISTS_DIR, "generated.txt")
+    # Default Wordlist Files
+    DEFAULT_WORDLIST = os.path.join(WORDLISTS_DIR, "rockyou2024.txt")
+    GENERATED_WORDLIST = os.path.join(WORDLISTS_DIR, "generated.txt")
 
-# Network Configuration
-NETWORK_INTERFACE = "wlan0mon"  # Default wireless interface for scanning/attacking
-CAPTURE_TIMEOUT = 60  # Timeout for handshake capture in seconds
+    # Network Configuration
+    NETWORK_INTERFACE = "wlan0mon"  # Default wireless interface for scanning/attacking
+    CAPTURE_TIMEOUT = 60  # Timeout for handshake capture in seconds
 
-# Cracking Configuration
-HASHCAT_MODE = 2500  # WPA/WPA2 cracking mode
-HASHCAT_OPTIONS = "--force"  # Default options for Hashcat
+    # Cracking Configuration
+    HASHCAT_MODE = 2500  # WPA/WPA2 cracking mode
+    HASHCAT_OPTIONS = "--force"  # Default options for Hashcat
 
-# Logging Configuration
-LOG_FILE = "mr_crackbot_ai.log"
-LOG_LEVEL = "INFO"
+    # Logging Configuration
+    LOG_FILE = "mr_crackbot_ai.log"
+    LOG_LEVEL = "INFO"
 
 # Ensure required directories exist
 def ensure_directories():
     """Ensure all required directories for the project exist."""
-    required_dirs = [WORDLISTS_DIR, CAPTURES_DIR]
+    required_dirs = [Config.WORDLISTS_DIR, Config.CAPTURES_DIR]
     for directory in required_dirs:
         os.makedirs(directory, exist_ok=True)
     print("[*] All necessary directories are set up.")
@@ -46,15 +47,15 @@ def check_prerequisites():
 # Utility Functions
 def get_data_directory():
     """Return the base data directory."""
-    return DATA_DIR
+    return Config.DATA_DIR
 
 def get_wordlists_directory():
     """Return the wordlists directory."""
-    return WORDLISTS_DIR
+    return Config.WORDLISTS_DIR
 
 def get_captures_directory():
     """Return the captures directory."""
-    return CAPTURES_DIR
+    return Config.CAPTURES_DIR
 
 def log_message(message):
     """Log a message (placeholder for future logging functionality)."""
@@ -63,19 +64,19 @@ def log_message(message):
 def print_configuration():
     """Print the current configuration settings."""
     print("===== Mr. CrackBot AI Configuration =====")
-    print(f"Project Name: {PROJECT_NAME}")
-    print(f"Version: {VERSION}")
-    print(f"Data Directory: {DATA_DIR}")
-    print(f"Wordlists Directory: {WORDLISTS_DIR}")
-    print(f"Captures Directory: {CAPTURES_DIR}")
-    print(f"Default Wordlist: {DEFAULT_WORDLIST}")
-    print(f"Generated Wordlist: {GENERATED_WORDLIST}")
-    print(f"Network Interface: {NETWORK_INTERFACE}")
-    print(f"Capture Timeout: {CAPTURE_TIMEOUT} seconds")
-    print(f"Hashcat Mode: {HASHCAT_MODE}")
-    print(f"Hashcat Options: {HASHCAT_OPTIONS}")
-    print(f"Log File: {LOG_FILE}")
-    print(f"Log Level: {LOG_LEVEL}")
+    print(f"Project Name: {Config.PROJECT_NAME}")
+    print(f"Version: {Config.VERSION}")
+    print(f"Data Directory: {Config.DATA_DIR}")
+    print(f"Wordlists Directory: {Config.WORDLISTS_DIR}")
+    print(f"Captures Directory: {Config.CAPTURES_DIR}")
+    print(f"Default Wordlist: {Config.DEFAULT_WORDLIST}")
+    print(f"Generated Wordlist: {Config.GENERATED_WORDLIST}")
+    print(f"Network Interface: {Config.NETWORK_INTERFACE}")
+    print(f"Capture Timeout: {Config.CAPTURE_TIMEOUT} seconds")
+    print(f"Hashcat Mode: {Config.HASHCAT_MODE}")
+    print(f"Hashcat Options: {Config.HASHCAT_OPTIONS}")
+    print(f"Log File: {Config.LOG_FILE}")
+    print(f"Log Level: {Config.LOG_LEVEL}")
     print("=========================================")
 
 def validate_environment():
