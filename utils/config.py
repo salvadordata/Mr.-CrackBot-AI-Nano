@@ -30,7 +30,7 @@ class Config:
     LOG_LEVEL = "INFO"
 
     @classmethod
-    def load_from_file(cls, file_path):
+    def load_from_file(cls, file_path="config.yaml"):
         """
         Load configuration settings from a YAML file and override default values.
         :param file_path: Path to the YAML configuration file.
@@ -50,6 +50,10 @@ class Config:
             print(f"[!] Configuration file not found: {file_path}")
         except yaml.YAMLError as e:
             print(f"[!] Error parsing YAML configuration file: {e}")
+
+
+# Automatically load the configuration on import
+Config.load_from_file()
 
 
 # Ensure required directories exist
