@@ -1,5 +1,7 @@
 import os
 import shutil
+import yaml  # For loading YAML files
+
 
 class Config:
     # General Configuration
@@ -27,6 +29,29 @@ class Config:
     LOG_FILE = "mr_crackbot_ai.log"
     LOG_LEVEL = "INFO"
 
+    @classmethod
+    def load_from_file(cls, file_path):
+        """
+        Load configuration settings from a YAML file and override default values.
+        :param file_path: Path to the YAML configuration file.
+        """
+        try:
+            with open(file_path, 'r') as file:
+                config_data = yaml.safe_load(file)
+
+            for key, value in config_data.items():
+                if hasattr(cls, key):
+                    setattr(cls, key, value)
+                else:
+                    print(f"[WARNING] Unknown config key: {key}")
+
+            print("[*] Configuration successfully loaded from file.")
+        except FileNotFoundError:
+            print(f"[!] Configuration file not found: {file_path}")
+        except yaml.YAMLError as e:
+            print(f"[!] Error parsing YAML configuration file: {e}")
+
+
 # Ensure required directories exist
 def ensure_directories():
     """Ensure all required directories for the project exist."""
@@ -34,6 +59,7 @@ def ensure_directories():
     for directory in required_dirs:
         os.makedirs(directory, exist_ok=True)
     print("[*] All necessary directories are set up.")
+
 
 # Check if required tools are installed
 def check_prerequisites():
@@ -44,22 +70,27 @@ def check_prerequisites():
         raise RuntimeError(f"Missing required tools: {', '.join(missing_tools)}")
     print("[*] All required tools are installed.")
 
+
 # Utility Functions
 def get_data_directory():
     """Return the base data directory."""
     return Config.DATA_DIR
 
+
 def get_wordlists_directory():
     """Return the wordlists directory."""
     return Config.WORDLISTS_DIR
+
 
 def get_captures_directory():
     """Return the captures directory."""
     return Config.CAPTURES_DIR
 
+
 def log_message(message):
     """Log a message (placeholder for future logging functionality)."""
     print(f"[LOG] {message}")
+
 
 def print_configuration():
     """Print the current configuration settings."""
@@ -79,6 +110,7 @@ def print_configuration():
     print(f"Log Level: {Config.LOG_LEVEL}")
     print("=========================================")
 
+
 def validate_environment():
     """
     Validate the environment setup by ensuring directories, tools, and dependencies are in place.
@@ -91,3 +123,14 @@ def validate_environment():
     except Exception as e:
         print(f"[!] Environment validation failed: {e}")
         exit(1)
+
+
+# Check and install PyYAML if not installed
+def install_pyyaml_if_missing():
+    """Check if PyYAML is installed and install it if missing."""
+    try:
+        import yaml  # noqa: F401
+    except ImportError:
+        print("[*] PyYAML not found. Installing...")
+        os.system("pip install pyyaml")
+        print("[*] PyYAML installed successfully.")
