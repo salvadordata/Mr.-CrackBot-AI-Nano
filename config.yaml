@@ -1,0 +1,54 @@
+# General Configuration
+PROJECT_NAME: "Mr. CrackBot AI"
+VERSION: "1.0"
+
+# Data Directories
+DATA_DIR: "data"
+WORDLISTS_DIR: "data/wordlists"
+CAPTURES_DIR: "data/captures"
+
+# Default Wordlist Files
+DEFAULT_WORDLIST: "data/wordlists/rockyou2024.txt"
+GENERATED_WORDLIST: "data/wordlists/generated.txt"
+
+# Network Configuration
+NETWORK_INTERFACE: "wlan0mon"  # Default wireless interface for scanning/attacking
+CAPTURE_TIMEOUT: 60  # Timeout for handshake capture in seconds
+
+# Cracking Configuration
+HASHCAT_MODE: 2500  # WPA/WPA2 cracking mode
+HASHCAT_OPTIONS: "--force"  # Default options for Hashcat
+
+# Logging Configuration
+LOG_FILE: "mr_crackbot_ai.log"
+LOG_LEVEL: "INFO"
+
+# Additional Configurations
+ENABLE_GPU: true  # Enable GPU acceleration
+MAX_THREADS: 8  # Maximum number of threads to use for processing
+TEMP_DIRECTORY: "temp"  # Temporary directory for intermediate files
+
+# Tool Paths
+AIRODUMP_PATH: "/usr/bin/airodump-ng"
+AIREPLAY_PATH: "/usr/bin/aireplay-ng"
+HASHCAT_PATH: "/usr/bin/hashcat"
+
+# Wordlist Management
+COMBINED_WORDLIST: "data/wordlists/combined_rockyou2024.txt"
+WORDLIST_CHUNK_SIZE: 100000  # Number of lines per chunk when splitting large wordlists
+
+# Security Features
+ENABLE_SANDBOX: false  # Run in a sandboxed environment for testing
+ENFORCE_SAFE_MODE: true  # Disable potentially destructive operations
+
+# User Interface
+UI_THEME: "dark"  # Options: light, dark
+ENABLE_ANIMATIONS: true  # Enable animations in the UI
+
+# Notifications
+SEND_EMAIL_ALERTS: false  # Send email alerts on critical operations
+EMAIL_RECIPIENT: "admin@example.com"  # Email recipient for alerts
+
+# Debugging Options
+ENABLE_DEBUG_MODE: false  # Enable verbose debugging logs
+VERBOSE_OUTPUT: true  # Enable verbose output for CLI operations
