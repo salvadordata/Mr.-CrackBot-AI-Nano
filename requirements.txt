@@ -3,3 +3,5 @@ transformers
 torch
 kivy
 requests
+aiofiles
+

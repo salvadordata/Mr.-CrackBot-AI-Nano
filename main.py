@@ -144,7 +144,10 @@ class CrackBotCore:
 
 async def main() -> None:
     """Main application entry point."""
-    config = Config.load_from_file("config.yaml")
+    # Automatically load configuration from YAML file
+    config_file_path = "config.yaml"
+    config = Config.load_from_file(config_file_path)
+
     core = CrackBotCore(config)
 
     run_intro()
@@ -164,3 +167,4 @@ async def main() -> None:
 
 if __name__ == "__main__":
     asyncio.run(main())
+

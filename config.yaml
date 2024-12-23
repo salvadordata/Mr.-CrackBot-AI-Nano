@@ -17,7 +17,7 @@ CAPTURE_TIMEOUT: 60  # Timeout for handshake capture in seconds
 
 # Cracking Configuration
 HASHCAT_MODE: 2500  # WPA/WPA2 cracking mode
-HASHCAT_OPTIONS: "--force"  # Default options for Hashcat
+HASHCAT_OPTIONS: "--force --opencl-device-types=1,2"  # Enable GPU (OpenCL) options
 
 # Logging Configuration
 LOG_FILE: "mr_crackbot_ai.log"
@@ -25,13 +25,14 @@ LOG_LEVEL: "INFO"
 
 # Additional Configurations
 ENABLE_GPU: true  # Enable GPU acceleration
-MAX_THREADS: 8  # Maximum number of threads to use for processing
+MAX_THREADS: 8  # Utilize the Jetson Nano's full threading capability
 TEMP_DIRECTORY: "temp"  # Temporary directory for intermediate files
+TEMP_DIRECTORY_ENABLED: true  # Ensure temporary directory handling is activated
 
 # Tool Paths
-AIRODUMP_PATH: "/usr/bin/airodump-ng"
-AIREPLAY_PATH: "/usr/bin/aireplay-ng"
-HASHCAT_PATH: "/usr/bin/hashcat"
+AIRODUMP_PATH: "/usr/bin/airodump-ng"  # Path to airodump-ng; ensure correct installation
+AIREPLAY_PATH: "/usr/bin/aireplay-ng"  # Path to aireplay-ng; ensure correct installation
+HASHCAT_PATH: "/usr/bin/hashcat"  # Path to hashcat; ensure correct installation
 
 # Wordlist Management
 COMBINED_WORDLIST: "data/wordlists/combined_rockyou2024.txt"
@@ -52,3 +53,9 @@ EMAIL_RECIPIENT: "admin@example.com"  # Email recipient for alerts
 # Debugging Options
 ENABLE_DEBUG_MODE: false  # Enable verbose debugging logs
 VERBOSE_OUTPUT: true  # Enable verbose output for CLI operations
+
+# GPU Configuration for Jetson Nano
+CUDA_PATH: "/usr/local/cuda"  # Path to the CUDA toolkit installation
+GPU_DEVICE_ID: 0  # GPU device ID to use for tasks
+GPU_MAX_MEMORY: 90  # Max GPU memory usage percentage
+GPU_FORCE_USAGE: true  # Force GPU acceleration where applicable
