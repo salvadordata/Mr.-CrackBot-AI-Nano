@@ -7,7 +7,11 @@ import os
 import platform
 import shutil
 import subprocess
-import psutil
+
+try:
+    import psutil
+except ImportError:
+    print("[!] psutil module is not installed. Please install it using 'pip install psutil'.")
 
 
 # Resource Management
@@ -16,7 +20,7 @@ def get_cpu_usage():
     Get the current CPU usage as a percentage.
     :return: CPU usage percentage.
     """
-    return psutil.cpu_percent(interval=1)
+    return psutil.cpu_percent(interval=1) if psutil else None
 
 
 def get_memory_usage():
@@ -24,8 +28,8 @@ def get_memory_usage():
     Get the current memory usage as a percentage.
     :return: Memory usage percentage.
     """
-    memory = psutil.virtual_memory()
-    return memory.percent
+    memory = psutil.virtual_memory() if psutil else None
+    return memory.percent if memory else None
 
 
 def get_disk_usage(path="/"):
@@ -34,8 +38,8 @@ def get_disk_usage(path="/"):
     :param path: Path to check disk usage (default: "/").
     :return: Disk usage percentage.
     """
-    disk = psutil.disk_usage(path)
-    return disk.percent
+    disk = psutil.disk_usage(path) if psutil else None
+    return disk.percent if disk else None
 
 
 # GPU Management
@@ -60,7 +64,9 @@ def get_gpu_usage():
                 "--format=csv,noheader,nounits",
             ]
         )
-        used_memory, total_memory, utilization = result.decode().strip().split(", ")
+        used_memory, total_memory, utilization = (
+            result.decode().strip().split(", ")
+        )
         return {
             "used_memory": int(used_memory),
             "total_memory": int(total_memory),
@@ -83,14 +89,14 @@ def check_minimum_requirements():
         "disk": 10 * 1024 ** 3,  # Minimum disk space in bytes
     }
 
-    cpu_speed = psutil.cpu_freq().current / 1000
-    memory_total = psutil.virtual_memory().total
-    disk_total = psutil.disk_usage("/").total
+    cpu_speed = psutil.cpu_freq().current / 1000 if psutil else None
+    memory_total = psutil.virtual_memory().total if psutil else None
+    disk_total = psutil.disk_usage("/").total if psutil else None
 
     return {
-        "cpu_ok": cpu_speed >= requirements["cpu"],
-        "memory_ok": memory_total >= requirements["memory"],
-        "disk_ok": disk_total >= requirements["disk"],
+        "cpu_ok": cpu_speed >= requirements["cpu"] if cpu_speed else False,
+        "memory_ok": memory_total >= requirements["memory"] if memory_total else False,
+        "disk_ok": disk_total >= requirements["disk"] if disk_total else False,
         "details": {
             "cpu_speed": cpu_speed,
             "memory_total": memory_total,
@@ -121,9 +127,10 @@ def set_high_priority():
     :return: None
     """
     try:
-        p = psutil.Process(os.getpid())
-        p.nice(psutil.HIGH_PRIORITY_CLASS)
-        print("[*] Process priority set to high.")
+        p = psutil.Process(os.getpid()) if psutil else None
+        if p:
+            p.nice(psutil.HIGH_PRIORITY_CLASS)
+            print("[*] Process priority set to high.")
     except psutil.AccessDenied as e:
         print(f"[!] Failed to set high priority: {e}")
 
@@ -139,6 +146,7 @@ def get_system_info():
         "os_version": platform.version(),
         "architecture": platform.architecture()[0],
         "cpu": platform.processor(),
-        "cores": psutil.cpu_count(logical=True),
-        "memory": psutil.virtual_memory().total // (1024 ** 3),
+        "cores": psutil.cpu_count(logical=True) if psutil else None,
+        "memory": psutil.virtual_memory().total // (1024 ** 3) if psutil else None,
     }
+
