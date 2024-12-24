@@ -4,8 +4,10 @@ from network.scanner import scan_networks
 from network.handshake import capture_handshake
 from cracking.hashcat_wrapper import crack_password
 
+
 class MainWindow:
-    def __init__(self):
+    def __init__(self, core=None):
+        self.core = core
         self.root = tk.Tk()
         self.root.title("Jetson Crack AI - Network Cracking Interface")
         self.root.geometry("800x600")

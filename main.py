@@ -115,7 +115,7 @@ class CrackBotCore:
         }
 
         wordlist = await self.retry_operation(generate_password_guesses, metadata)
-        wordlist_file = Path(self.config.temp_dir) / f"wordlist_{target.bssid}.txt"
+        wordlist_file = Path(self.config.TEMP_DIRECTORY) / f"wordlist_{target.bssid}.txt"
 
         async with aiofiles.open(wordlist_file, "w") as f:
             await f.write("\n".join(wordlist))
@@ -134,7 +134,10 @@ class CrackBotCore:
 
     async def cleanup_temp_files(self) -> None:
         """Clean up temporary files."""
-        temp_dir = Path(self.config.temp_dir)
+        temp_dir = Path(self.config.TEMP_DIRECTORY)
+        if not temp_dir.exists():
+            logger.warning(f"Temp directory {temp_dir} does not exist.")
+            return
         for file in temp_dir.glob("*"):
             try:
                 file.unlink()
@@ -146,7 +149,8 @@ async def main() -> None:
     """Main application entry point."""
     # Automatically load configuration from YAML file
     config_file_path = "config.yaml"
-    config = Config.load_from_file(config_file_path)
+    config = Config()
+    config.load_from_file(config_file_path)
 
     core = CrackBotCore(config)
 
@@ -167,4 +171,3 @@ async def main() -> None:
 
 if __name__ == "__main__":
     asyncio.run(main())
-

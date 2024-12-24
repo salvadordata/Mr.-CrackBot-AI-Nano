@@ -18,30 +18,66 @@ class Config:
     GENERATED_WORDLIST = os.path.join(WORDLISTS_DIR, "generated.txt")
 
     # Network Configuration
-    NETWORK_INTERFACE = "wlan0mon"  # Default wireless interface for scanning/attacking
-    CAPTURE_TIMEOUT = 60  # Timeout for handshake capture in seconds
+    NETWORK_INTERFACE = "wlan0mon"
+    CAPTURE_TIMEOUT = 60
 
     # Cracking Configuration
-    HASHCAT_MODE = 2500  # WPA/WPA2 cracking mode
-    HASHCAT_OPTIONS = "--force"  # Default options for Hashcat
+    HASHCAT_MODE = 2500
+    HASHCAT_OPTIONS = "--force --opencl-device-types=1,2"
 
     # Logging Configuration
     LOG_FILE = "mr_crackbot_ai.log"
     LOG_LEVEL = "INFO"
 
+    # Temporary Directory
+    TEMP_DIRECTORY = "temp"
+    TEMP_DIRECTORY_ENABLED = True
+
+    # Additional Configurations
+    ENABLE_GPU = True
+    MAX_THREADS = 8
+
+    # Tool Paths
+    AIRODUMP_PATH = "/usr/bin/airodump-ng"
+    AIREPLAY_PATH = "/usr/bin/aireplay-ng"
+    HASHCAT_PATH = "/usr/bin/hashcat"
+
+    # Wordlist Management
+    COMBINED_WORDLIST = "data/wordlists/combined_rockyou2024.txt"
+    WORDLIST_CHUNK_SIZE = 100000
+
+    # Security Features
+    ENABLE_SANDBOX = False
+    ENFORCE_SAFE_MODE = True
+
+    # User Interface
+    UI_THEME = "dark"
+    ENABLE_ANIMATIONS = True
+
+    # Notifications
+    SEND_EMAIL_ALERTS = False
+    EMAIL_RECIPIENT = "admin@example.com"
+
+    # Debugging Options
+    ENABLE_DEBUG_MODE = False
+    VERBOSE_OUTPUT = True
+
+    # GPU Configuration for Jetson Nano
+    CUDA_PATH = "/usr/local/cuda"
+    GPU_DEVICE_ID = 0
+    GPU_MAX_MEMORY = 90
+    GPU_FORCE_USAGE = True
+
     @classmethod
     def load_from_file(cls, file_path="config.yaml"):
-        """
-        Load configuration settings from a YAML file and override default values.
-        :param file_path: Path to the YAML configuration file.
-        """
+        """Load configuration settings from a YAML file and override default values."""
         try:
-            with open(file_path, 'r') as file:
+            with open(file_path, "r") as file:
                 config_data = yaml.safe_load(file)
 
             for key, value in config_data.items():
-                if hasattr(cls, key):
-                    setattr(cls, key, value)
+                if hasattr(cls, key.upper()):
+                    setattr(cls, key.upper(), value)
                 else:
                     print(f"[WARNING] Unknown config key: {key}")
 
@@ -51,6 +87,11 @@ class Config:
         except yaml.YAMLError as e:
             print(f"[!] Error parsing YAML configuration file: {e}")
 
+    @classmethod
+    def get_combined_wordlist_path(cls):
+        """Get the combined wordlist path, fallback to DEFAULT_WORDLIST."""
+        return getattr(cls, "COMBINED_WORDLIST", cls.DEFAULT_WORDLIST)
+
 
 # Automatically load the configuration on import
 Config.load_from_file()
@@ -59,7 +100,11 @@ Config.load_from_file()
 # Ensure required directories exist
 def ensure_directories():
     """Ensure all required directories for the project exist."""
-    required_dirs = [Config.WORDLISTS_DIR, Config.CAPTURES_DIR]
+    required_dirs = [
+        Config.WORDLISTS_DIR,
+        Config.CAPTURES_DIR,
+        Config.TEMP_DIRECTORY,
+    ]
     for directory in required_dirs:
         os.makedirs(directory, exist_ok=True)
     print("[*] All necessary directories are set up.")
@@ -75,66 +120,25 @@ def check_prerequisites():
     print("[*] All required tools are installed.")
 
 
-# Utility Functions
-def get_data_directory():
-    """Return the base data directory."""
-    return Config.DATA_DIR
-
-
-def get_wordlists_directory():
-    """Return the wordlists directory."""
-    return Config.WORDLISTS_DIR
-
-
-def get_captures_directory():
-    """Return the captures directory."""
-    return Config.CAPTURES_DIR
-
-
-def log_message(message):
-    """Log a message (placeholder for future logging functionality)."""
-    print(f"[LOG] {message}")
-
-
-def print_configuration():
-    """Print the current configuration settings."""
-    print("===== Mr. CrackBot AI Configuration =====")
-    print(f"Project Name: {Config.PROJECT_NAME}")
-    print(f"Version: {Config.VERSION}")
-    print(f"Data Directory: {Config.DATA_DIR}")
-    print(f"Wordlists Directory: {Config.WORDLISTS_DIR}")
-    print(f"Captures Directory: {Config.CAPTURES_DIR}")
-    print(f"Default Wordlist: {Config.DEFAULT_WORDLIST}")
-    print(f"Generated Wordlist: {Config.GENERATED_WORDLIST}")
-    print(f"Network Interface: {Config.NETWORK_INTERFACE}")
-    print(f"Capture Timeout: {Config.CAPTURE_TIMEOUT} seconds")
-    print(f"Hashcat Mode: {Config.HASHCAT_MODE}")
-    print(f"Hashcat Options: {Config.HASHCAT_OPTIONS}")
-    print(f"Log File: {Config.LOG_FILE}")
-    print(f"Log Level: {Config.LOG_LEVEL}")
-    print("=========================================")
+# Check if required Python libraries are installed
+def check_python_dependencies():
+    """Ensure required Python libraries are installed."""
+    try:
+        import transformers  # noqa: F401
+    except ImportError:
+        print("[*] Transformers library not found. Installing...")
+        os.system("pip install transformers")
+        print("[*] Transformers library installed successfully.")
 
 
 def validate_environment():
-    """
-    Validate the environment setup by ensuring directories, tools, and dependencies are in place.
-    Combines ensure_directories() and check_prerequisites() into a single call.
-    """
+    """Validate the environment setup by ensuring directories, tools, and dependencies are in place."""
     try:
         ensure_directories()
         check_prerequisites()
+        check_python_dependencies()
         print("[*] Environment validation complete.")
     except Exception as e:
         print(f"[!] Environment validation failed: {e}")
         exit(1)
 
-
-# Check and install PyYAML if not installed
-def install_pyyaml_if_missing():
-    """Check if PyYAML is installed and install it if missing."""
-    try:
-        import yaml  # noqa: F401
-    except ImportError:
-        print("[*] PyYAML not found. Installing...")
-        os.system("pip install pyyaml")
-        print("[*] PyYAML installed successfully.")
