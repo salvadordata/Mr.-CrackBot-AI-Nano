@@ -1,8 +1,12 @@
+"""
+System Utilities Module
+Provides functionality for monitoring and managing system resources and commands.
+"""
+
 import os
 import platform
 import shutil
 import subprocess
-
 import psutil
 
 
@@ -50,7 +54,11 @@ def get_gpu_usage():
     """
     try:
         result = subprocess.check_output(
-            ["nvidia-smi", "--query-gpu=memory.used,memory.total,utilization.gpu", "--format=csv,noheader,nounits"]
+            [
+                "nvidia-smi",
+                "--query-gpu=memory.used,memory.total,utilization.gpu",
+                "--format=csv,noheader,nounits",
+            ]
         )
         used_memory, total_memory, utilization = result.decode().strip().split(", ")
         return {
